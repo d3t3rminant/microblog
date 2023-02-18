@@ -1,0 +1,60 @@
+1. Tried pinging the domain name of my microblog app's link from the command prompt and each time a new IP address was used and got a request timed out message for each of them so I think Heroku's IPs are dynamic and since the mongoDB Atlas -> Nework Access only has my current IP address added, the microblog app from Heroku's server is unable to access the cluster.
+
+2. To verify the above, I added 0.0.0.0/0 in the mongoDB Atlas ->Network Access->Access List entry and deployed the microblog app from Heroku and this time it worked. Though this seems to be a workaround I understand that its not safe to be used in production environments.
+
+Hey Subha,
+
+I think you've already identified what the issue is: the Heroku Dyno doesn't have access to MongoDB unless you open MongoDB to everyone.
+
+MongoDB Atlas has a tutorial on how to do this for production applications: https://developer.mongodb.com/how-to/use-atlas-on-heroku#configuring-heroku-ip-addresses-in-atlas
+
+Kind regards,
+Jose
+
+
+
+You can see in the logs that it's trying to connect to localhost, but in Heroku the database is not running in localhost. You should provide your MongoDB Atlas connection string to Heroku before it can connect.
+Hi Jose, it was my fault, I didn't set the .env parameter and correct the line in app.py with client = MongoClient(os.environ.get("MONGODB_URI"))
+
+
+
+
+Hi Leo, I discovered the problem! I added the flask as you suggested, but I still had a few error messages. I researched and I found a simple solution, I added an extra line
+
+app = create_app() in the end, after the return app, and I was able to deploy and post using the URL generated.
+
+
+
+
+
+The error is letting you know that the pymongo connection string is incorrect. You are using “localhost:27017” while it should point to the mongo atlas instance on the cloud.
+
+Check lecture 112 and lecture 124.
+
+
+
+Do the following: Sign in to Mongo in your browser, find your project > security > network access > add IP > allow from anywhere (small button in the heading of the pop up. not a perfect solution for obvious reasons but works.
+
+
+
+
+
+13.32.99.113:443
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+As an alternative, you could sort in the MongoDB .find() method since that will be faster. You could do app.db.entries.find({}).sort("date", pymongo.DESCENDING). This only works because the date format is YYYY-mm-dd which is sortable. Other date formats wouldn’t work.

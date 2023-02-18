@@ -1,0 +1,165 @@
+html {font-family: system-ui;}
+
+*, *::after, *::before{
+box-sizing: inherit;
+}
+body {
+    box-sizing: border-box;
+    margin:0;
+}
+
+
+.navbar {
+    max-width: 640px;
+    margin: 50px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;   /*vlozi prostor mezi prvky navbaru*/
+    font-size: 20px;
+
+}
+
+.navbar__brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar__logo {
+    margin-right: 30px;
+}
+
+.navbar__navigation {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    color: #5c6b70;
+}
+
+
+.navbar__navigation-item {
+    margin-left: 50px;
+}
+
+.navbar__link {
+    text-decoration: none;
+    color:inherit;
+}
+
+.main {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.form__input {
+    width: 100%;
+}
+
+.form__label {
+    display:block;
+    margin-bottom: 8px;
+}
+
+.form__textarea {
+    width: inherit;
+    font-size: 18px;
+    padding: 8px 10px;
+    border:none;
+    background-color: #F3F1F1;
+    margin-bottom: 10px;
+    height: 120px;
+}
+
+.form__submit {
+    background-color: #3CD0FF;
+    border-radius: 20px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 30px;
+    color:white
+}
+
+.form__submit:hover {
+    outline: solid 1px black;  /* outline narozdil od borderu nezabira misto*/
+    cursor:pointer;
+}
+
+
+.entry {
+    margin-top: 50px;
+}
+
+
+.entry__title {
+    display: inline;
+    font-size: 18px;
+}
+
+
+.entry__date {
+    color: #5c6b70
+}
+
+.entry__content {
+    font-size: 16px;
+    line-height: 150%;
+}
+
+.footer {
+    background-color: #F65151;
+    padding: 40px 0;
+    margin: 50px 0 0 0;
+    color: white;
+    font-size: 14px;
+    height: 140px;
+
+}
+
+.footer__content {
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer .left {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.footer .center {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.footer .right {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    
+}
+
+
+.footer_item{
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.footer_item:hover {
+    text-decoration:underline;
+}

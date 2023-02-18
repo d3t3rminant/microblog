@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microblog</title>
+    <link rel="stylesheet" href="/static/css/styles.css"/>
+</head>
+
+
+
+<body>
+    {#navigační menu#}
+    <header class ="navbar">
+        <div class = "navbar__brand">
+            <img class="navbar__logo" src="/static/logo.svg" alt="The Microblog logo" />Microblog
+        </div>
+        <ul class = "navbar__navigation">
+          <li class = "navbar__navigation-item"><a href="#" class="navbar__link">Recent</a></li>    
+          <li class = "navbar__navigation-item"><a href="#" class="navbar__link">Calendar</a></li>    
+        </ul>
+    </header>
+
+    <main class="main">
+
+        <!-- sekce pro formulář -->
+        <section> 
+            <h1>Add new entry</h1>
+            <form class="form" method="POST">   <!-- defaultne je to GET-->
+                <p class="form__input">            <!-- prý je ok pouzivat <p> na grouping/strukturu cehokoliv-->
+                    <label for="entry" class="form__label">Entry contents:</label>
+                    <textarea name="content" id="entry" class="form__textarea" ></textarea>  <!-- muzeme pridat -aria-label="Entry contents"- a smazat label a B bude vedet oc jde-->
+                </p>
+                <button type="submit" class="form__submit">Add entry</button>
+            </form>
+        </section> 
+        
+
+        <!-- sekce pro posty -->
+        <section> 
+            <h1>Recent posts</h1>
+            {% for entry in entries %}
+            <article class="entry"> <!-- tohle bude každý post -->
+                <div>
+                    <h3 class="entry__title">{{ entry[0] | truncate(30, true) }}</h3>
+                    <time class="entry__date" datetime = "{{ entry[1] }}">• {{ entry[2] }}</time>
+                </div>
+                <p class="entry__content">
+                    {{ entry[0] }}
+                </p>
+            </article>
+            {% endfor %}
+
+        </section> 
+
+   </main>
+ 
+ 
+
+
+   <footer class="footer">   <!-- footer má šířku přes celou stránku-->
+    <div class="footer__content"> <!-- ale content ne-->
+        <section class="left">
+            <a class="footer_item" href="">Made by Jakub Urbánek</a>
+            <a class="footer_item" href="">My other projects</a>
+        </section>
+       <section class="center">
+            <a class="footer_item" href="">Recent</a>
+            <a class="footer_item" href="">Calendar</a>
+       </section>
+
+        <section class ="right">
+            <a class="footer_item" href="">About</a>
+            <a class="footer_item" href="">How this was made</a>
+        </section>
+    
+    </div>
+
+   </footer>
+</body>
+</html>
